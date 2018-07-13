@@ -1,0 +1,51 @@
+<!-- ng-template -->
+
+<!-- version 1: show non-counter tag using css .red
+<div class="box red">
+  <ng-content></ng-content>
+</div>
+<div class="box">
+  <ng-content select="counter"></ng-content>
+</div>
+-->
+
+<!-- show or hide whatever inside <wrapper> the counter does not increment
+<button (click)="show = !show">
+    {{ show ? 'Hide' : 'Show' }}
+  </button>
+  <div class="box" *ngIf="show">
+    <ng-content></ng-content>
+  </div>
+-->
+
+<!-- the counter does not increment even though it loops 3 times
+<ng-content> does not “produce” content, it simply projects existing content.
+
+-->
+<!--
+<div class="box" *ngFor="let item of items">
+      <ng-content></ng-content>
+    </div>
+-->
+
+<!--
+<div class="box">
+     <ng-content></ng-content>
+   </div>
+-->
+
+<!-- To let the wrapper control the instantiation of its children, we need to give it a template for the content, rather than the content itself. -->
+<button (click)="show = !show">
+  {{ show ? 'Hide' : 'Show' }}
+</button>
+<!-- just display 1 -->
+<div class="box" *ngIf="show">
+  <ng-container [ngTemplateOutlet]="template"></ng-container>
+</div>
+
+<!-- this will display 3 times i.e. the # in items
+1, 2, 3, 4
+-->
+<div class="box" *ngFor="let item of items">
+    <ng-container [ngTemplateOutlet]="template"></ng-container>
+  </div>

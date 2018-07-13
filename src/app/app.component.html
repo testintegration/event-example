@@ -1,0 +1,17 @@
+<zippy></zippy>
+<!-- without ngProjectAs="counter", counter will not match counter in wrapper.component.html -->
+<!--
+<wrapper>
+  <span>This is not a counter</span>
+  <ng-container ngProjectAs="counter">
+   <counter></counter>
+ </ng-container>
+</wrapper>
+-->
+
+<!-- The wrapper cannot use <ng-content> anymore, since it receives a template.  -->
+<wrapper>
+  <ng-template>
+    <counter></counter>
+  </ng-template>
+</wrapper>
